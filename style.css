@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+
+.floating-objects {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-object {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.floating-object:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    transform: rotateX(45deg) rotateY(45deg);
+}
+
+.floating-object:nth-child(2) {
+    top: 20%;
+    right: 15%;
+    animation-delay: 1s;
+    transform: rotateX(-30deg) rotateY(60deg);
+    border-radius: 50%;
+}
+
+.floating-object:nth-child(3) {
+    top: 60%;
+    left: 5%;
+    animation-delay: 2s;
+    transform: rotateX(60deg) rotateY(-45deg);
+    width: 80px;
+    height: 80px;
+}
+
+.floating-object:nth-child(4) {
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 3s;
+    transform: rotateX(-45deg) rotateY(30deg);
+    border-radius: 50%;
+}
+
+.floating-object:nth-child(5) {
+    top: 40%;
+    left: 85%;
+    animation-delay: 4s;
+    transform: rotateX(30deg) rotateY(-60deg);
+    width: 40px;
+    height: 40px;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotateX(var(--rotate-x, 0deg)) rotateY(var(--rotate-y, 0deg));
+    }
+    50% {
+        transform: translateY(-20px) rotateX(calc(var(--rotate-x, 0deg) + 10deg)) rotateY(calc(var(--rotate-y, 0deg) + 10deg));
+    }
+}
+
+.background-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    z-index: 0;
+}
+
+
+.container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.profile-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 400px;
+    width: 100%;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-10px);
+}
+
+
+.profile-icon {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+    transform: scale(1.1) rotateY(180deg);
+}
+
+
+.profile-name {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.profile-description {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.link-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: aliceblue;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.link-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.link-button:hover::before {
+    left: 100%;
+}
+
+.link-button:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.link-icon {
+    font-size: 20px;
+    width: 24px;
+    text-align: center;
+}
+
+
+.linkedin { background: linear-gradient(135deg, rgba(0, 119, 181, 0.3), rgba(0, 119, 181, 0.1)); }
+.github { background: linear-gradient(135deg, rgba(51, 51, 51, 0.3), rgba(51, 51, 51, 0.1)); }
+.website { background: linear-gradient(135deg, rgba(255, 87, 34, 0.3), rgba(255, 87, 34, 0.1)); }
+.project1 { background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(76, 175, 80, 0.1)); }
+.project2 { background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(156, 39, 176, 0.1)); }
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .profile-card {
+        padding: 30px 20px;
+        margin: 20px 0;
+    }
+    
+    .profile-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .profile-name {
+        font-size: 24px;
+    }
+    
+    .profile-description {
+        font-size: 14px;
+    }
+    
+    .link-button {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .floating-object {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .floating-object:nth-child(3) {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 25px 15px;
+        border-radius: 15px;
+    }
+    
+    .profile-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 32px;
+    }
+    
+    .profile-name {
+        font-size: 20px;
+    }
+    
+    .links-container {
+        gap: 12px;
+    }
+}
